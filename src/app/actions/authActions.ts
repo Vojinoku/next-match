@@ -8,7 +8,7 @@ import { User } from "@prisma/client";
 import { registerSchema, RegisterSchema } from "../lib/schemas/registerSchema";
 import { LoginSchema } from "../lib/schemas/loginSchema";
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 
 import bcrypt from "bcryptjs";
@@ -38,7 +38,9 @@ export async function signInUser(
     }
   }
 }
-
+export async function signOutUser() {
+  await signOut({ redirectTo: "/" });
+}
 export async function registerUser(
   data: RegisterSchema
 ): Promise<ActionResult<User>> {
