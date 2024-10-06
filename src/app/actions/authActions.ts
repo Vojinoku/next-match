@@ -1,13 +1,17 @@
 "use server";
 
 import { ActionResult } from "@/types";
+
 import { prisma } from "../lib/prisma";
-import { registerSchema, RegisterSchema } from "../lib/schemas/registerSchema";
-import bcrypt from "bcryptjs";
 import { User } from "@prisma/client";
+
+import { registerSchema, RegisterSchema } from "../lib/schemas/registerSchema";
 import { LoginSchema } from "../lib/schemas/loginSchema";
+
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+
+import bcrypt from "bcryptjs";
 
 export async function signInUser(
   data: LoginSchema

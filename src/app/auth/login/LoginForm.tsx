@@ -6,9 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, loginSchema } from "@/app/lib/schemas/loginSchema";
 import { signInUser } from "@/app/actions/authActions";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -17,14 +19,16 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
   });
+
   const onSubmit = async (data: LoginSchema) => {
     const result = await signInUser(data);
     if (result.status === "success") {
       router.push("/members");
     } else {
-      console.log(result.error);
+      toast.error(result.error as string);
     }
   };
+
   return (
     <Card className="w-2/5 mx-auto">
       <CardHeader className="flex flex-col items-center justify-center">
