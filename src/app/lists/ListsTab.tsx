@@ -40,7 +40,7 @@ export default function ListsTab({ members, likeIds }: Props) {
         {(item) => (
           <Tab key={item.id} title={item.label}>
             {isPending ? (
-              <LoadingComponent />
+              <LoadingComponent label="Error loading" />
             ) : (
               <>
                 {members.length > 0 ? (
