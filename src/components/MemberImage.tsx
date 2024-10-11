@@ -19,6 +19,7 @@ export default function MemberImage({ photo }: Props) {
           crop="fill"
           gravity="faces"
           className="rounded-xl"
+          priority
         />
       ) : (
         <Image
