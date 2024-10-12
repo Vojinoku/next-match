@@ -84,7 +84,7 @@ export async function getMessagesByContainer(container: string) {
   try {
     const userId = await getAuthUserId();
 
-    const selector = container === "outbox" ? "senderId" : "recepientId";
+    const selector = container === "outbox" ? "senderId" : "recipientId";
     const messages = await prisma.message.findMany({
       where: {
         [selector]: userId,
